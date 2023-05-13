@@ -12,7 +12,6 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/usuarios")
 public class UsuarioHandler {
 
