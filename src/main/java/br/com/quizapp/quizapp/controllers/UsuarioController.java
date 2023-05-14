@@ -1,6 +1,7 @@
-package br.com.quizapp.quizapp.handler;
+package br.com.quizapp.quizapp.controllers;
 
 import br.com.quizapp.quizapp.models.Usuario;
+import br.com.quizapp.quizapp.models.dto.UsuarioResponseDto;
 import br.com.quizapp.quizapp.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,14 +13,13 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/usuarios")
-public class UsuarioHandler {
+public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/find_all", method = RequestMethod.GET)
     public ResponseEntity<List<Usuario>> findAll() {
         List<Usuario> list = usuarioService.findAll();
         return ResponseEntity.ok().body(list);
@@ -31,9 +31,8 @@ public class UsuarioHandler {
         return ResponseEntity.ok().body(obj);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String> insert(@RequestBody Usuario usuario) {
-
+    @RequestMapping(value = "/save_user", method = RequestMethod.POST)
+    public ResponseEntity<UsuarioResponseDto> insert(@RequestBody Usuario usuario) {
         usuario.setId(null);
         Usuario obj = usuarioService.insert(usuario);
 
@@ -41,7 +40,12 @@ public class UsuarioHandler {
                 .fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
-        return new ResponseEntity<String>("Usuario e nota salvos com sucesso!", HttpStatus.CREATED);
+
+        UsuarioResponseDto responseDto = new UsuarioResponseDto();
+        responseDto.setStatusCode(HttpStatus.CREATED.value());
+        responseDto.setStatusMessage("Usuário e nota salvos no banco de dados com sucesso!");
+
+        return new ResponseEntity<UsuarioResponseDto>(responseDto, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
