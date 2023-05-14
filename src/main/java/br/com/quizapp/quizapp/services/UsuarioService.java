@@ -1,7 +1,7 @@
 package br.com.quizapp.quizapp.services;
 
 import br.com.quizapp.quizapp.models.Usuario;
-import br.com.quizapp.quizapp.repository.UsuarioRepository;
+import br.com.quizapp.quizapp.repositorys.UsuarioRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

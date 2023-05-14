@@ -1,4 +1,4 @@
-package br.com.quizapp.quizapp.repository;
+package br.com.quizapp.quizapp.repositorys;
 
 import br.com.quizapp.quizapp.models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
