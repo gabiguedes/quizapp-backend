@@ -15,12 +15,10 @@ services:
       - "8080:8080"
     depends_on:
       - db
-    network_mode: bridge
 
   # Configurando o serviço do banco de dados PostgreSQL
   db:
     image: postgres:15.3-alpine
-    network_mode: bridge
     environment:
       POSTGRES_DB: quizapp
       POSTGRES_USER: postgres
