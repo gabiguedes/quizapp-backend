@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -36,16 +34,11 @@ public class UsuarioController {
         usuario.setId(null);
         Usuario obj = usuarioService.insert(usuario);
 
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(obj.getId()).toUri();
-
         UsuarioResponseDto responseDto = new UsuarioResponseDto();
         responseDto.setStatusCode(HttpStatus.CREATED.value());
         responseDto.setStatusMessage("Usuário e nota salvos no banco de dados com sucesso!");
 
-        return new ResponseEntity<UsuarioResponseDto>(responseDto, HttpStatus.CREATED);
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -54,4 +47,5 @@ public class UsuarioController {
 
         return ResponseEntity.noContent().build();
     }
+
 }

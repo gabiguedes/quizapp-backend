@@ -17,7 +17,7 @@ public class Usuario {
     private String nome;
 
     @Column(name = "nota")
-    private List<String> nota;
+    private List<Integer> nota;
 
     public Usuario() {
         this.nota = new ArrayList<>();
@@ -39,11 +39,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public List<String> getNota() {
+    public List<Integer> getNota() {
         return nota;
     }
 
-    public void setNota(List<String> nota) {
+    public void setNota(List<Integer> nota) {
         this.nota = nota;
     }
 }
