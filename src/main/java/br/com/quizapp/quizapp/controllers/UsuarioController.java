@@ -32,7 +32,7 @@ public class UsuarioController {
     @RequestMapping(value = "/save_user", method = RequestMethod.POST)
     public ResponseEntity<UsuarioResponseDto> insert(@RequestBody Usuario usuario) {
         usuario.setId(null);
-        Usuario obj = usuarioService.insert(usuario);
+        usuarioService.insert(usuario);
 
         UsuarioResponseDto responseDto = new UsuarioResponseDto();
         responseDto.setStatusCode(HttpStatus.CREATED.value());
