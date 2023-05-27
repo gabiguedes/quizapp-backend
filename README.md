@@ -9,3 +9,13 @@
 #### Java 20
 
 #### Spring Boot 3.0.6 - Maven
+
+
+## Docker compose
+
+```shell 
+docker-compose up 
+```
+
+
+
