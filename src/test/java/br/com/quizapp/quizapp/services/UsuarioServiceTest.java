@@ -102,6 +102,19 @@ public class UsuarioServiceTest {
         verify(usuarioRepository, times(1)).deleteById(id);
     }
 
+    @Test
+    public void when_TestOrdenaDecrescente() {
+        List<Integer> expect = new ArrayList<>();
+        expect.add(10);
+        expect.add(8);
+        expect.add(5);
+        expect.add(4);
+        expect.add(3);
+        expect.add(2);
+        expect.add(1);
+        expect.add(0);
 
+        usuarioService.ordenaListaDecrescente(expect);
+    }
 
 }

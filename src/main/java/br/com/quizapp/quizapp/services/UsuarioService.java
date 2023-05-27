@@ -2,10 +2,10 @@ package br.com.quizapp.quizapp.services;
 
 import br.com.quizapp.quizapp.models.Usuario;
 import br.com.quizapp.quizapp.repositorys.UsuarioRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +25,7 @@ public class UsuarioService {
 
         if (obj.isPresent()) {
             user = obj.get();
+            ordenaListaDecrescente(user.getNota());
         }else {
             throw new NullPointerException();
         }
@@ -39,5 +40,9 @@ public class UsuarioService {
     public void delete(Long id) {
         findById(id);
         usuarioRepository.deleteById(id);
+    }
+
+    protected void ordenaListaDecrescente(List<Integer> listaDesordenada) {
+        Collections.sort(listaDesordenada, Collections.reverseOrder());
     }
 }
