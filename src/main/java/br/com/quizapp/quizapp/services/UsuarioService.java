@@ -21,7 +21,15 @@ public class UsuarioService {
 
     public Usuario findById(Long id) {
         Optional<Usuario> obj = usuarioRepository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException(1L, "Usuario"));
+        Usuario user;
+
+        if (obj.isPresent()) {
+            user = obj.get();
+        }else {
+            throw new NullPointerException();
+        }
+
+        return user;
     }
 
     public Usuario insert(Usuario obj) {
